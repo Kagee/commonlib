@@ -171,7 +171,7 @@ deb-src http://backports.debian.org/debian-backports squeeze-backports main cont
 EOF
     elif [ x"$DISTRIBUTION" = x"debian" ] && [ x"$VERSION" = x"wheezy" ]
     then
-        # no new repositories
+        echo "no new repositories" # fix "unexpected else"
     else
         echo Unsupport distribution and version combination $DISTRIBUTION $VERSION
         exit 1
