@@ -49,7 +49,7 @@ SITE="$1"
 UNIX_USER="$2"
 
 case "$SITE" in
-    fixmystreet | mapit)
+    fixmystreet)
         echo ==== Installing $SITE;;
     *)
         echo Installing $SITE with this script is not currently supported.
@@ -87,8 +87,8 @@ else
 fi
 REPOSITORY="$DIRECTORY/$SITE"
 
-REPOSITORY_URL=git://github.com/mysociety/$SITE.git
-BRANCH=master
+REPOSITORY_URL=git://github.com/Kagee/fixmystreet.git
+BRANCH=fms-wheezy
 
 DISTRIBUTION="$(lsb_release -i -s  | tr A-Z a-z)"
 VERSION="$(lsb_release -c -s)"
@@ -169,6 +169,9 @@ deb-src http://security.debian.org/ squeeze/updates main non-free
 deb http://backports.debian.org/debian-backports squeeze-backports main contrib non-free
 deb-src http://backports.debian.org/debian-backports squeeze-backports main contrib non-free
 EOF
+    elif [ x"$DISTRIBUTION" = x"debian" ] && [ x"$VERSION" = x"wheezy" ]
+    then
+        # no new repositories
     else
         echo Unsupport distribution and version combination $DISTRIBUTION $VERSION
         exit 1
